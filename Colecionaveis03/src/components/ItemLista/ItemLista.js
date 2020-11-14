@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, Image, TouchableOpacity } from 'react-native';
 import estiloItemLista from './estiloItemLista';
 import { LinearGradient } from 'expo-linear-gradient';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ItemLista = ({data, detalhe}) => {
 

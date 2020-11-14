@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Text, View, Image } from 'react-native';
 import estiloItemLista from './estiloItemLista';
 import { LinearGradient } from 'expo-linear-gradient';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const ItemLista = ({data}) => {
+const ItemLista = ({data, detalhe}) => {
 
     const [item, setItem] = useState(data);
 
     return (
-        <View style={estiloItemLista.areaItens}>
+        <TouchableOpacity style={estiloItemLista.areaItens} onPress={detalhe}>
 
             <LinearGradient colors={['#14417b', '#92afd7', '#92afd7']}>
                 <Text style={estiloItemLista.itemTitulo}> {item.titulo} </Text>
@@ -23,7 +24,7 @@ const ItemLista = ({data}) => {
                 />
             </LinearGradient>
 
-        </View>
+        </TouchableOpacity>
     );
 }
 

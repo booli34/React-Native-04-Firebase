@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import estiloItem from './estiloItem';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
-function Item({ navigation }) {
+function Item({ navigation, route }) {
 
     const [ item, setItem] = useState({});
+
+    useEffect(() => {
+        setItem(route.params ? route.params : {});
+    }, [route.params]);
 
     const voltar = () => {
         navigation.navigate('Colecao')
@@ -36,7 +40,7 @@ function Item({ navigation }) {
                         style={estiloItem.campo}
                         placeholder="Titulo"
                         placeholderTextColor='#FFFFFF'
-                        onChangeText={titulo => setItem(titulo)}
+                        onChangeText={titulo => setItem({...item, titulo})}
                         value={item.titulo}
                         />
                     </View>
@@ -47,7 +51,7 @@ function Item({ navigation }) {
                         style={estiloItem.campo}
                         placeholder="Autor"
                         placeholderTextColor='#FFFFFF'
-                        onChangeText={autor => setItem(autor)}
+                        onChangeText={autor => setItem({...item, autor})}
                         value={item.autor}
                         />
                     </View>
@@ -60,8 +64,8 @@ function Item({ navigation }) {
                         placeholderTextColor='#FFFFFF'
                         keiboardType='numeric'
                         maxLength={4}
-                        onChangeText={anoPublicacao => setItem(anoPublicacao)}
-                        value={item.anoPublicacao}
+                        onChangeText={anoPublicacao => setItem({...item, anoPublicacao})}
+                        value={item.anoPublicacao ? item.anoPublicacao.toString() : item.anoPublicacao}
                         />
                     </View>
 
@@ -75,7 +79,7 @@ function Item({ navigation }) {
                         multiline={true}
                         numberOfLines={4}
                         blurOnSubmit={false}
-                        onChangeText={descricao => setItem(descricao)}
+                        onChangeText={descricao => setItem({...item, descricao})}
                         value={item.descricao}
                         />
                         </ScrollView>

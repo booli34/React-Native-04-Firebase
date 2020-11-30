@@ -8,4 +8,19 @@ export class LivroFB{
     pegarColecao(){
         return this.state.colecao;
     }
+
+    adicionarLivro(livro){
+        this.state.colecao.add(livro);
+    }
+
+    editarLivro(livro){
+        const {id} = livro;
+        delete livro.id;
+
+        this.state.colecao.doc(id).update(livro);
+    }
+
+    removerLivro(livro){
+        this.state.colecao.doc(livro.id).delete();
+    }
 }
